@@ -117,9 +117,54 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/index.ts":[function(require,module,exports) {
-console.log('hi there!!!!!!!!');
-},{}],"../../../.nvm/versions/node/v14.3.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"src/CustomMap.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CustomMap = void 0;
+
+var CustomMap =
+/** @class */
+function () {
+  // private or public : public일 경우에는 다른 사람들이 접근해서 수정할 수 있지만
+  // private : 우리가 제공한 것 이외에 다른 것들은 수정 할 수 없음
+  function CustomMap(divId) {
+    this.googleMap = new google.maps.Map(document.getElementById(divId), {
+      zoom: 1,
+      center: {
+        lat: 0,
+        lng: 0
+      }
+    });
+  }
+
+  return CustomMap;
+}();
+
+exports.CustomMap = CustomMap;
+/*
+이전에는 constructor(){
+  this.googleMap = new google.maps.Map(document.getElementById('map'), {
+    ...
+  }
+이런 식으로 되어 있고, 이걸 쓰려고 할 때 new CustomMap() 으로 했었음
+이걸 재 사용성을 늘리기 위해서 divId라는 parameter 지정,
+사용할 때에는 new CustomMap('map')으로 쓰려고 하는 아이디 argument 넘겨줌
+*/
+},{}],"src/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // import {User} from './User';
+// import {Company} from './Company';
+
+var CustomMap_1 = require("./CustomMap");
+
+new CustomMap_1.CustomMap('map');
+},{"./CustomMap":"src/CustomMap.ts"}],"../../../.nvm/versions/node/v14.3.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
